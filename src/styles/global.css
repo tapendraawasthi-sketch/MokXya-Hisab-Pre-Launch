@@ -1,0 +1,114 @@
+@import './tokens.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-page);
+  color: var(--color-text-main);
+  font-family: var(--font-family-sans);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root {
+  isolation: isolate;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography Scale */
+.t-display {
+  font-size: var(--font-size-5xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+}
+
+.t-page-heading {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+}
+
+.t-section-heading {
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+}
+
+.t-body {
+  font-size: var(--font-size-base);
+}
+
+.t-small {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.t-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.t-financial {
+  font-variant-numeric: tabular-nums;
+  font-family: monospace; /* Or a specific font if we add one */
+}
+
+/* Devanagari specific classes */
+.lang-ne {
+  font-family: var(--font-family-devanagari), var(--font-family-sans);
+  line-height: var(--line-height-devanagari);
+}
+
+/* Utilities */
+.focus-visible-outline:focus-visible {
+  outline: 2px solid var(--color-primary-blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
