@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mokxya.com/</loc>
+    <loc>https://mokxya.pages.dev/</loc>
     <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://mokxya.com/pilot</loc>
+    <loc>https://mokxya.pages.dev/pilot</loc>
     <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://mokxya.com/about</loc>
+    <loc>https://mokxya.pages.dev/about</loc>
     <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://mokxya.com/privacy</loc>
+    <loc>https://mokxya.pages.dev/privacy</loc>
     <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
   </url>
   <url>
-    <loc>https://mokxya.com/terms</loc>
+    <loc>https://mokxya.pages.dev/terms</loc>
     <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
   </url>
 </urlset>

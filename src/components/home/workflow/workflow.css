@@ -1,0 +1,124 @@
+.workflow-section {
+  padding-block: var(--spacing-24);
+  background-color: var(--color-surface-sunken);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.workflow-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.workflow-step {
+  display: flex;
+  gap: var(--spacing-6);
+  position: relative;
+}
+
+.workflow-node-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.workflow-node {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-brand-teal);
+  color: var(--color-surface-sunken);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.workflow-icon {
+  color: var(--color-surface-sunken);
+}
+
+.workflow-connector {
+  width: 2px;
+  flex-grow: 1;
+  background-color: var(--color-border-hover);
+  margin-top: var(--spacing-2);
+  margin-bottom: calc(var(--spacing-8) * -1); /* connect to next step */
+}
+
+.workflow-step:last-child .workflow-connector {
+  display: none;
+}
+
+.workflow-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding-bottom: var(--spacing-8);
+}
+
+.workflow-step:last-child .workflow-content {
+  padding-bottom: 0;
+}
+
+.workflow-title {
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.workflow-desc {
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 400px;
+}
+
+@media (min-width: 768px) {
+  .workflow-list {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .workflow-step {
+    flex: 1;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    text-align: center;
+  }
+
+  .workflow-node-container {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .workflow-node {
+    width: 64px;
+    height: 64px;
+  }
+
+  .workflow-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .workflow-connector {
+    width: calc(100% - 64px - var(--spacing-8));
+    height: 2px;
+    position: absolute;
+    top: 32px; /* half of node height */
+    left: calc(50% + 32px + var(--spacing-4));
+    margin: 0;
+  }
+
+  .workflow-content {
+    align-items: center;
+    padding-bottom: 0;
+    padding-inline: var(--spacing-4);
+  }
+}

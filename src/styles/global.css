@@ -84,9 +84,20 @@ p, h1, h2, h3, h4, h5, h6 {
   line-height: var(--line-height-devanagari);
 }
 
-/* Utilities */
+/* Utilities & Global Focus */
+:focus-visible {
+  outline: 2px solid var(--color-brand-teal, #40D6B1);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--color-brand-navy, #071A2B);
+  outline-offset: 2px;
+}
+
 .focus-visible-outline:focus-visible {
-  outline: 2px solid var(--color-primary-blue);
+  outline: 2px solid var(--color-brand-teal, #40D6B1);
   outline-offset: 4px;
   border-radius: 4px;
 }
@@ -112,3 +123,6 @@ p, h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
   border-width: 0;
 }
+html { scroll-behavior: smooth; }
+
+section[id] { scroll-margin-top: calc(var(--height-header, 64px) + 2rem); }

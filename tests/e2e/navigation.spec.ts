@@ -1,37 +1,55 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Navigation & Routing', () => {
-  test('Navigate between key pages', async ({ page, isMobile }) => {
+test.describe('Navigation and Layout', () => {
+  test('Header desktop navigation works correctly', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
+
+    const productLink = page.locator('.desktop-nav a').filter({ hasText: 'Product' });
+    await expect(productLink).toBeVisible();
+    await productLink.click();
+    await expect(page).toHaveURL(/.*#capabilities/);
     
-    if (isMobile) {
-      await page.getByRole('button', { name: /toggle mobile menu/i }).click();
-      await page.locator('nav[aria-label="Primary Mobile"]').getByRole('link', { name: 'Pilot' }).click();
-    } else {
-      await page.locator('nav[aria-label="Primary Desktop"]').getByRole('link', { name: 'Pilot' }).click();
-    }
-    
-    await expect(page).toHaveURL(/.*pilot/);
-    await expect(page.locator('h1')).toContainText('Founding Pilot');
-    
-    // Click Home logo to return
-    await page.getByRole('link', { name: 'MokXya Home' }).click();
-    await expect(page).toHaveURL('http://localhost:5173/');
+    // Hash navigation should scroll the page
+    const productHeading = page.locator('#capabilities h2').first();
+    await expect(productHeading).toBeInViewport();
   });
 
-  test('Mobile navigation toggle', async ({ page, isMobile }) => {
-    if (!isMobile) return;
-    
+  test('Mobile menu behaves correctly', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
-    const menuBtn = page.getByRole('button', { name: /toggle mobile menu/i });
+
+    const menuToggle = page.getByLabel('Toggle mobile menu');
+    await expect(menuToggle).toBeVisible();
     
     // Open menu
-    await menuBtn.click();
-    const nav = page.locator('nav[aria-label="Primary Mobile"]');
-    await expect(nav).toBeVisible();
+    await menuToggle.click();
     
-    // Click a link and ensure menu closes or navigates
-    await nav.getByRole('link', { name: 'FAQ' }).click();
-    await expect(page).toHaveURL(/.*#faq/);
+    const mobileMenu = page.locator('#mobile-menu');
+    await expect(mobileMenu).toBeVisible();
+
+    // Body scroll should be locked
+    const bodyOverflow = await page.evaluate(() => document.body.style.overflow);
+    expect(bodyOverflow).toBe('hidden');
+
+    // Click link and verify menu closes
+    await page.locator('#mobile-menu a').filter({ hasText: 'Product' }).click();
+    await expect(mobileMenu).toBeHidden();
+    
+    // Body scroll should be restored
+    const bodyOverflowAfter = await page.evaluate(() => document.body.style.overflow);
+    expect(bodyOverflowAfter).toBe('unset');
+  });
+
+  test('Skip link is accessible via keyboard', async ({ page }) => {
+    await page.goto('/');
+    await page.keyboard.press('Tab');
+    
+    const skipLink = page.getByRole('link', { name: /skip to main content/i });
+    await expect(skipLink).toBeFocused();
+    
+    await skipLink.press('Enter');
+    const mainContent = page.locator('#main-content');
+    await expect(mainContent).toBeFocused();
   });
 });

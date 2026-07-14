@@ -36,3 +36,19 @@ It must feel:
 - Simple English with carefully selected Nepali headings.
 - Plain business language (no complex accounting jargon unless explained).
 - Honest product claims (do not claim to replace an accountant).
+
+
+## Phase 5: Pilot Form Content Guidelines
+
+### Approved Wording
+- **Pilot Eligibility**: 'Owner-operated or closely managed retail, trading, wholesale, or distribution businesses. Generally one to five staff with regular sales and purchases.'
+- **Pilot Benefits**: 'Access to suitable pilot workflows. Opportunity to test Nepali, Romanised Nepali and English entry experiences. Direct opportunity to share practical feedback.'
+- **Participant Expectations**: 'Test supported everyday workflows and review previews carefully. Provide honest feedback and report usability issues. Understand that the product is still under development.'
+- **Disclosures**: 
+  - 'Application details are used only to assess pilot suitability and contact selected applicants.'
+  - 'MokXya Hisab is under development. Applying does not guarantee selection or access.'
+  - 'Future pricing will be communicated before any paid activation.'
+- **Submission Mode Labels**: 'Send pilot application' (Endpoint), 'Continue in WhatsApp', 'Continue by email'.
+- **Prohibited Claims**: Do not use fake success wording (e.g. 'Submission successful' if only opening mailto), do not invent contact details, do not guarantee a launch date.
+- **Tone**: Calm, respectful, honest limitation disclosure, no harsh rejections.
+

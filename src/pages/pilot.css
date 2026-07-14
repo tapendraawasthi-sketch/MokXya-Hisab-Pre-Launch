@@ -1,0 +1,200 @@
+.pilot-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+}
+
+@media (min-width: 1024px) {
+  .pilot-layout {
+    grid-template-columns: 400px 1fr;
+    align-items: start;
+  }
+}
+
+.pilot-context {
+  position: sticky;
+  top: calc(var(--header-height) + var(--spacing-8));
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.pilot-form-container {
+  background-color: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .pilot-form-container {
+    padding: var(--spacing-8);
+  }
+}
+
+.pilot-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.pilot-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.pilot-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.pilot-legend {
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-bottom: var(--spacing-2);
+}
+
+.pilot-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.pilot-radio-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.pilot-radio-label:hover {
+  background-color: var(--color-surface-subtle);
+}
+
+.pilot-radio-label:has(input:checked) {
+  border-color: var(--color-brand-teal);
+  background-color: var(--color-surface-subtle);
+}
+
+.pilot-radio-input {
+  margin-top: 0.25rem;
+}
+
+.pilot-input,
+.pilot-select,
+.pilot-textarea {
+  width: 100%;
+  padding: var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-main);
+  color: var(--color-text-main);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pilot-input[aria-invalid="true"],
+.pilot-select[aria-invalid="true"],
+.pilot-textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.pilot-input:focus,
+.pilot-select:focus,
+.pilot-textarea:focus {
+  outline: none;
+  border-color: var(--color-brand-teal);
+  box-shadow: 0 0 0 2px var(--color-brand-teal-soft);
+}
+
+.pilot-error-text {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pilot-help-text {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.pilot-error-summary {
+  background-color: rgba(220, 38, 38, 0.05); /* very light red */
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.pilot-error-summary h3 {
+  color: var(--color-danger);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.pilot-error-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.pilot-error-summary a {
+  color: var(--color-danger);
+  text-decoration: underline;
+}
+
+.pilot-error-summary a:hover {
+  text-decoration: none;
+}
+
+/* Success State */
+.pilot-success-state {
+  text-align: center;
+  padding: var(--spacing-8) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.pilot-success-icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-success);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-4);
+}
+
+/* Two column grid for form fields on desktop */
+.pilot-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 640px) {
+  .pilot-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-6);
+  }
+}

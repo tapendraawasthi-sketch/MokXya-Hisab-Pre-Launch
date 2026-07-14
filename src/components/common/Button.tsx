@@ -3,11 +3,12 @@ import React from 'react';
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'small' | 'default' | 'large';
-  asChild?: boolean;
+  href?: string;
+  as?: string | React.ElementType;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className = '', variant = 'primary', size = 'default', asChild, ...props }, ref) => {
+export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ className = '', variant = 'primary', size = 'default', as, ...props }, ref) => {
     
     // In a real app we'd use a CSS module or styled-components, but inline styles or utility classes work here.
     // For simplicity, we'll map variants to style objects or class names.
@@ -32,11 +33,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary: {
-        backgroundColor: 'var(--color-primary-blue)',
+        backgroundColor: 'var(--color-brand-navy)',
         color: '#ffffff',
       },
       secondary: {
-        backgroundColor: 'var(--color-teal-accent)',
+        backgroundColor: 'var(--color-brand-teal)',
         color: '#ffffff',
       },
       outline: {
@@ -52,12 +53,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const style = { ...baseStyle, ...sizeStyles[size], ...variantStyles[variant], ...props.style };
 
+    const Component = as || ((props as any).href ? 'a' : 'button');
+
     return (
-      <button 
-        ref={ref}
+      <Component 
+        ref={ref as any}
         className={`focus-visible-outline ${className}`}
         style={style}
-        {...props}
+        {...(props as any)}
       />
     );
   }

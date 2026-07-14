@@ -7,8 +7,8 @@ describe('App', () => {
   it('renders the home page correctly with the correct brand name', () => {
     render(<App />);
     
-    // Check for the correct brand name
-    expect(screen.getAllByText(siteConfig.brand.name).length).toBeGreaterThan(0);
+    // Check for the correct brand name in Alt text since we now use image logos
+    expect(screen.getAllByAltText(siteConfig.brand.name).length).toBeGreaterThan(0);
     expect(screen.getAllByText(siteConfig.brand.productName).length).toBeGreaterThan(0);
     expect(screen.getAllByText(siteConfig.brand.tagline).length).toBeGreaterThan(0);
     
@@ -20,3 +20,4 @@ describe('App', () => {
     expect(allText).not.toMatch(/Mokshya/i);
   });
 });
+

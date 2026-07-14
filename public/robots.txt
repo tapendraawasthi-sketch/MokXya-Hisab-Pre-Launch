@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mokxya.com/sitemap.xml
+Sitemap: https://mokxya.pages.dev/sitemap.xml

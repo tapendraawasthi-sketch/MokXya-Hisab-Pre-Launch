@@ -2,41 +2,38 @@ import React from 'react';
 import { siteConfig } from '../../config/site';
 
 interface StructuredDataProps {
-  type: 'Organization' | 'SoftwareApplication' | 'FAQPage';
+  type: 'WebSite' | 'Organization' | 'FAQPage';
   data?: any;
 }
 
 export const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
   let schemaData: any = {};
 
-  if (type === 'Organization') {
+  if (type === 'WebSite') {
     schemaData = {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "WebSite",
       "name": siteConfig.name,
       "url": siteConfig.url,
-      "logo": `${siteConfig.url}/assets/og-image-placeholder.png`,
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": siteConfig.social.phone,
-        "contactType": "customer service"
-      }
+      "description": siteConfig.brand.supportingLine
     };
-  } else if (type === 'SoftwareApplication') {
-    schemaData = {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": siteConfig.brand.productName,
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "NPR",
-        "availability": "https://schema.org/InStock",
-        "description": "Founding Pilot Phase"
-      }
-    };
+  } else if (type === 'Organization') {
+    // Only output if we have actual public contact details
+    if (siteConfig.social.phone || siteConfig.social.email) {
+      schemaData = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": siteConfig.name,
+        "url": siteConfig.url,
+        "contactPoint": siteConfig.social.phone ? {
+          "@type": "ContactPoint",
+          "telephone": siteConfig.social.phone,
+          "contactType": "customer service"
+        } : undefined
+      };
+    } else {
+      return null;
+    }
   } else if (type === 'FAQPage' && data) {
     schemaData = {
       "@context": "https://schema.org",
@@ -52,6 +49,8 @@ export const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) =>
     };
   }
 
+  if (Object.keys(schemaData).length === 0) return null;
+
   return (
     <script 
       type="application/ld+json"
@@ -59,3 +58,4 @@ export const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) =>
     />
   );
 };
+

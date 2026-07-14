@@ -40,7 +40,7 @@ export const MobileEntryPreview: React.FC = () => {
       <div style={{ padding: 'var(--spacing-4)', flex: 1, backgroundColor: 'var(--color-surface-subtle)', overflowY: 'auto' }}>
         <Stack gap="var(--spacing-4)">
           
-          <div style={{ backgroundColor: 'var(--color-primary-blue)', color: 'white', padding: 'var(--spacing-4)', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
+          <div style={{ backgroundColor: 'var(--color-brand-navy)', color: 'white', padding: 'var(--spacing-4)', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
             <p className="t-small" style={{ opacity: 0.8 }}>Today's Balance</p>
             <p className="t-section-heading t-financial" style={{ margin: 'var(--spacing-2) 0' }}>NPR 8,500</p>
           </div>
@@ -71,7 +71,7 @@ export const MobileEntryPreview: React.FC = () => {
       <div style={{ padding: 'var(--spacing-4)', backgroundColor: 'var(--color-surface-elevated)', borderTop: '1px solid var(--color-border)' }}>
         <button style={{
           width: '100%',
-          backgroundColor: 'var(--color-teal-accent)',
+          backgroundColor: 'var(--color-brand-teal)',
           color: 'white',
           border: 'none',
           padding: 'var(--spacing-3)',

@@ -59,8 +59,12 @@ This determines your deployment URL: `mokxya.pages.dev` or `mokxya-hisab.pages.d
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 
-### 8. Add environment variables (optional)
-If you wish to use environment-driven configuration in the future, add variables in **Settings > Environment variables**. For now, no variables are required — all configuration is in `src/config/site.ts`.
+### 8. Add environment variables
+MokXya relies on environment variables for Pilot submission routing. In **Settings > Environment variables**, add:
+- `VITE_SITE_URL`: `https://mokxya.pages.dev`
+- `VITE_PILOT_FORM_URL`: (Optional) Your HTTPS endpoint for pilot applications.
+- `VITE_WHATSAPP_NUMBER`: (Optional) Fallback WhatsApp number.
+- `VITE_CONTACT_EMAIL`: (Optional) Fallback email.
 
 ### 9. Deploy
 Click **Save and Deploy**. Cloudflare will clone the repository, run `npm run build`, and publish the `dist/` directory.
@@ -79,7 +83,7 @@ Once deployed, test these routes directly in your browser:
 Open the site on your phone or use browser developer tools at 390×844 to confirm the mobile layout and navigation menu work correctly.
 
 ### 12. Verify the pilot form
-Open `/pilot`. If `pilotFormUrl` is empty in `site.ts`, confirm the fallback contact section is displayed. If configured, confirm the "Continue to Full Application" button opens the form correctly.
+Open `/pilot`. If no environment variables are set, confirm the fallback "Applications opening soon" section is displayed. If configured with endpoint/WhatsApp/email, confirm the submission functions correctly.
 
 ### 13. Verify metadata
 Right-click the homepage → **View Page Source** → confirm:

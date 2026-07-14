@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'MokXya Hisab',
   tagline: 'Freedom from Complexity',
-  url: 'https://mokxya.com',
+  url: import.meta.env.VITE_SITE_URL || 'https://mokxya.pages.dev',
   links: {
     dashboard: '/app',
     pilot: '/pilot',
@@ -13,13 +13,13 @@ export const siteConfig = {
     business: null,
   },
   social: {
-    phone: '',          // [FOUNDER] Add real phone number e.g. '+977-98XXXXXXXX'
-    whatsapp: '',       // [FOUNDER] Add WhatsApp number e.g. 'https://wa.me/977XXXXXXXXXX'
-    email: '',          // [FOUNDER] Add real email e.g. 'hello@mokxya.com'
-    facebook: '',       // Leave empty to hide
-    tiktok: '',
-    youtube: '',
-    instagram: '',
+    phone: import.meta.env.VITE_CONTACT_PHONE || '',
+    whatsapp: import.meta.env.VITE_CONTACT_WHATSAPP || '',
+    email: import.meta.env.VITE_CONTACT_EMAIL || '',
+    facebook: import.meta.env.VITE_SOCIAL_FACEBOOK || '',
+    tiktok: import.meta.env.VITE_SOCIAL_TIKTOK || '',
+    youtube: import.meta.env.VITE_SOCIAL_YOUTUBE || '',
+    instagram: import.meta.env.VITE_SOCIAL_INSTAGRAM || '',
   },
   brand: {
     name: "MokXya",
@@ -33,7 +33,7 @@ export const siteConfig = {
   },
   contact: {
     address: "Kathmandu, Nepal",
-    founder: "MokXya Team"
+    founder: import.meta.env.VITE_FOUNDER_NAME || ""
   },
   features: {
     exportAndBackup: "Roadmap",
@@ -41,7 +41,8 @@ export const siteConfig = {
     offlineOperation: "Under Development"
   },
   environment: {
-    isProduction: true,
+    isProduction: import.meta.env.PROD,
     mockDataMode: false
   }
 };
+

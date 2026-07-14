@@ -8,19 +8,20 @@ This repository contains the source code for the MokXya Hisab pre-launch marketi
 
 ## Product Purpose
 
-MokXya Hisab is being developed for small Nepalese business owners (garments, footwear, cosmetics, hardware, electrical, and similar retail/trading shops) who:
+MokXya Hisab is being developed for small Nepalese business owners (retail, trading, wholesale, distribution) who:
 
 - do not have a full-time accountant;
 - manage Sales, Purchases, inventory and credit records;
 - want to work in Nepali, Romanised Nepali or English.
 
-The website explains the product, recruits founding-pilot businesses, and collects qualified pilot applications.
+The website explains the product, recruits founding-pilot businesses, and collects qualified pilot applications. Note that the product is currently under development. The pilot is controlled and selective. MokXya does not replace accountants.
 
 ---
 
 ## Repository Purpose
 
 This is the **marketing website only**. It is not the MokXya Hisab application itself. It produces a static bundle deployable with zero server infrastructure.
+The site does not connect to a real backend, live AI, or database. 
 
 ---
 
@@ -32,7 +33,7 @@ This is the **marketing website only**. It is not the MokXya Hisab application i
 - **Styling**: Vanilla CSS with CSS variables (design token system)
 - **Icons**: Lucide React
 - **Unit Testing**: Vitest + React Testing Library
-- **E2E Testing**: Playwright (Chromium + Mobile Chrome)
+- **E2E Testing**: Playwright (Chromium, Firefox, WebKit, Mobile Chrome)
 - **Deployment**: Cloudflare Pages (free tier)
 
 ---
@@ -51,7 +52,7 @@ git clone https://github.com/YOUR_USERNAME/mokxya-website.git
 cd mokxya-website
 
 # 2. Install dependencies
-npm install
+npm ci
 
 # 3. Start the development server
 npm run dev
@@ -61,34 +62,16 @@ The site will be available at `http://localhost:5173`.
 
 ---
 
-## Development
-
-All site configuration is centralised in one file:
-
-```
-src/config/site.ts
-```
-
-Update this file to change:
-- Pilot form URL
-- Contact phone, WhatsApp, email
-- Social media links (Facebook, TikTok, YouTube, Instagram)
-- Founder name/identity
-- Future pricing (when decided)
-- Feature availability labels
-
----
-
 ## Testing
-
-**Unit tests** (Vitest):
-```bash
-npm run test
-```
 
 **End-to-End browser tests** (Playwright):
 ```bash
-npx playwright test
+npm run test:e2e
+```
+
+**Unit tests** (Vitest):
+```bash
+npm test
 ```
 
 **Lint**:
@@ -104,53 +87,55 @@ npm run lint
 npm run build
 ```
 
-Output is placed in `dist/`. The build includes `_redirects` and `_headers` automatically from the `public/` directory.
+Output is placed in `dist/`.
 
 ---
 
 ## Cloudflare Pages Deployment
 
-See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the complete step-by-step deployment guide including project naming, build settings, route testing, and custom domain setup.
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the complete step-by-step deployment guide.
+Current Production URL: `https://mokxya.pages.dev`
 
 ### Quick settings
 
 | Setting | Value |
 |---------|-------|
+| Framework preset | None / Static |
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 | Production branch | `main` |
 
 ---
 
-## Configuration
+## Pilot Submission Modes
 
-### Replacing product screenshots
-Currently, the product-preview section uses CSS mockups. When real screenshots are available:
-1. Place images in `public/assets/product-previews/`
-2. Update `src/components/sections/PreviewGallerySection.tsx` to reference the new files
-3. Ensure all `<img>` elements have descriptive `alt` text
+The pilot application page (`/pilot`) gracefully falls back based on your environment variables. 
+Configure the mode by setting one of these in your `.env` (or Cloudflare Pages environment variables):
 
-### Changing the pilot form URL
-1. Open `src/config/site.ts`
-2. Set `pilotFormUrl` to your Google Form URL (or equivalent)
-3. The website automatically switches from the fallback contact view to a "Continue to Full Application" button
+1. **Endpoint Mode:** Set `VITE_PILOT_FORM_URL=https://your-endpoint.com`. Submits a JSON payload.
+2. **WhatsApp Mode:** Set `VITE_WHATSAPP_NUMBER=+977...` if no endpoint is available. Opens a pre-filled WhatsApp message.
+3. **Email Mode:** Set `VITE_CONTACT_EMAIL=hello@mokxya.com` if neither above are available. Opens a pre-filled email.
+4. **Unavailable Mode:** If none of the above are set, the form will fail closed and display "Applications opening soon".
 
-### Changing contact information
-1. Open `src/config/site.ts`
-2. Update `social.phone`, `social.whatsapp`, `social.email`
-3. Populate `social.facebook`, `social.tiktok`, `social.youtube`, `social.instagram` when accounts are ready
-4. Leave any value empty (`''`) to hide that link automatically
-
-### Custom domain setup (`mokxya.com.np`)
-1. Add the custom domain in the Cloudflare Pages dashboard (your project → Custom domains)
-2. Update `src/config/site.ts` → `url` to `https://mokxya.com.np`
-3. Push to `main` — Cloudflare deploys automatically
+See [`docs/PILOT_FORM_SETUP.md`](docs/PILOT_FORM_SETUP.md) for detailed configuration.
 
 ---
 
-## Legal
+## Environment Configuration
 
-The Privacy Policy (`/privacy`) and Terms of Service (`/terms`) pages should be reviewed by a qualified legal adviser before the site is used for commercial or investor purposes.
+Copy `.env.example` to `.env.local` to override settings locally.
+- `VITE_SITE_URL`: The canonical URL for SEO (e.g. `https://mokxya.pages.dev`)
+- `VITE_PILOT_FORM_URL`: The API endpoint for pilot submissions.
+- `VITE_WHATSAPP_NUMBER`: The WhatsApp number for pilot submissions.
+- `VITE_CONTACT_EMAIL`: The fallback contact email.
+
+---
+
+## Brand and Identity
+
+The authentic logo source is maintained in `design-inputs/`. 
+Do not alter the M/X geometry or use fake AI/React logos. 
+Approved primary spelling is `MokXya Hisab` or `MokXya`. Do not use `Mok-Xya`, `Orbix`, `Chat ERP`, etc.
 
 ---
 
@@ -161,10 +146,9 @@ The Privacy Policy (`/privacy`) and Terms of Service (`/terms`) pages should be 
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Project structure and technical decisions |
 | [`docs/BRAND_AND_CONTENT_GUIDE.md`](docs/BRAND_AND_CONTENT_GUIDE.md) | Brand rules, spelling, and content guidelines |
 | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | Step-by-step Cloudflare Pages deployment |
-| [`docs/FORM_CONFIGURATION.md`](docs/FORM_CONFIGURATION.md) | How to configure the pilot form |
-| [`docs/ACCESSIBILITY.md`](docs/ACCESSIBILITY.md) | Accessibility strategy and compliance |
-| [`docs/SEO.md`](docs/SEO.md) | SEO strategy and structured data |
-| [`docs/PRE_LAUNCH_CHECKLIST.md`](docs/PRE_LAUNCH_CHECKLIST.md) | Complete pre-launch checklist for the founder |
+| [`docs/PILOT_FORM_SETUP.md`](docs/PILOT_FORM_SETUP.md) | How to configure the pilot form |
+| [`docs/SEO_AND_METADATA_GUIDE.md`](docs/SEO_AND_METADATA_GUIDE.md) | SEO strategy and metadata configuration |
+| [`docs/PRE_LAUNCH_CHECKLIST.md`](docs/PRE_LAUNCH_CHECKLIST.md) | Complete pre-launch checklist for the owner |
 
 ---
 

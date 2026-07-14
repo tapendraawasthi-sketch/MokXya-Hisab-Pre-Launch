@@ -19,8 +19,8 @@ describe('Layout component', () => {
     // Check for Skip Link
     expect(screen.getByText(/Skip to main content/i)).toBeInTheDocument();
     
-    // Check for Header (Brand Mark should be visible)
-    expect(screen.getAllByText('MokXya').length).toBeGreaterThan(0);
+    // Check for Header (Brand Logo should be visible)
+    expect(screen.getAllByAltText('MokXya').length).toBeGreaterThan(0);
     
     // Check for Main content
     expect(screen.getByTestId('main-content')).toBeInTheDocument();
@@ -29,3 +29,4 @@ describe('Layout component', () => {
     expect(screen.getByText(/Privacy Policy/i)).toBeInTheDocument();
   });
 });
+

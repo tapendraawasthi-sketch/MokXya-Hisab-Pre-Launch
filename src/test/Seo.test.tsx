@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
-import { Meta } from '../components/seo/Meta';
+import { Seo } from '../components/seo/Seo';
 
-describe('SEO Meta Component', () => {
+describe('SEO Seo Component', () => {
   it('renders fallback title when none is provided', () => {
     render(
       <HelmetProvider>
-        <Meta />
+        <Seo />
       </HelmetProvider>
     );
     

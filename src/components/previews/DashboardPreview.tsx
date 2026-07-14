@@ -9,7 +9,7 @@ export const DashboardPreview: React.FC = () => {
     <Card elevated style={{ width: '100%', maxWidth: '900px', margin: '0 auto', overflow: 'hidden', padding: 0 }}>
       {/* Mockup Header */}
       <div style={{ backgroundColor: 'var(--color-surface-elevated)', borderBottom: '1px solid var(--color-border)', padding: 'var(--spacing-4)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontWeight: 'bold', color: 'var(--color-primary-blue)' }}>MokXya Hisab</div>
+        <div style={{ fontWeight: 'bold', color: 'var(--color-brand-navy)' }}>MokXya Hisab</div>
         <Cluster gap="var(--spacing-4)">
           <Badge variant="neutral">Illustrative figures</Badge>
         </Cluster>

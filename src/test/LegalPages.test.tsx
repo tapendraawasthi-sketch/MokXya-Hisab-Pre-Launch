@@ -18,25 +18,25 @@ describe('Legal and Informational Pages', () => {
 
   it('renders About page with correct semantics', () => {
     renderPage(About);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('About MokXya');
-    expect(screen.getByText(/Language-First Approach/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Making everyday business records easier to explain, review and organise.');
+    expect(screen.getByText(/Familiar language first/i)).toBeInTheDocument();
   });
 
   it('renders Privacy page', () => {
     renderPage(Privacy);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Privacy Policy');
-    expect(screen.getByText(/Marketing Site Collection/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Privacy Notice');
+    expect(screen.getByText(/Information Provided by Visitors/i)).toBeInTheDocument();
   });
 
   it('renders Terms page', () => {
     renderPage(Terms);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Terms of Service');
-    expect(screen.getByText(/No Professional Advice/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Terms of Use');
+    expect(screen.getByText(/Current Product Status/i)).toBeInTheDocument();
   });
 
   it('renders NotFound page', () => {
     renderPage(NotFound);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('404');
-    expect(screen.getByText('Return to Homepage')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Page Not Found');
+    expect(screen.getByText('Return Home')).toBeInTheDocument();
   });
 });

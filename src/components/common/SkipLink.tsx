@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export const SkipLink: React.FC = () => {
-  const [isFocused, setIsFocused] = useState(false);
-
   return (
     <a
       href="#main-content"
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
+      className="skip-link focus-visible-outline"
       style={{
-        position: isFocused ? 'absolute' : 'absolute',
-        top: isFocused ? '1rem' : '-100px',
-        left: '1rem',
-        zIndex: 9999,
         padding: '1rem',
-        backgroundColor: 'var(--color-primary-blue)',
+        backgroundColor: 'var(--color-brand-navy)',
         color: '#ffffff',
         fontWeight: 'bold',
         textDecoration: 'none',
@@ -22,6 +15,17 @@ export const SkipLink: React.FC = () => {
       }}
     >
       Skip to main content
+      <style>{`
+        .skip-link {
+          position: absolute;
+          top: -100px;
+          left: 1rem;
+          z-index: 9999;
+        }
+        .skip-link:focus {
+          top: 1rem;
+        }
+      `}</style>
     </a>
   );
 };

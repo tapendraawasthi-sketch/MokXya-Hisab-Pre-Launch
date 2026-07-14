@@ -2,42 +2,55 @@ import React from 'react';
 import { Container } from '../components/common/Container';
 import { Section } from '../components/common/Section';
 import { Stack } from '../components/common/Stack';
-import { Meta } from '../components/seo/Meta';
+import { Seo } from '../components/seo/Seo';
+import { legalContent } from '../content/legal';
 
 const Terms: React.FC = () => {
   return (
     <>
-      <Meta title="Terms of Service" description="Terms of service for the MokXya Hisab website." path="/terms" />
-      <Section>
-        <Container size="small">
-          <Stack gap="var(--spacing-6)">
-            <h1 className="t-page-heading">Terms of Service</h1>
-            <p className="t-small" style={{ color: 'var(--color-text-muted)' }}>Last Updated: Just now</p>
+      <Seo 
+        title="Terms of Use" 
+        description="Read the terms governing the use of the MokXya Hisab pre-launch website and founding-pilot applications." 
+        path="/terms" 
+      />
+      
+      <main id="main-content">
+        <Section style={{ paddingBlock: 'var(--spacing-16)' }}>
+          <Container size="small">
+            <Stack gap="var(--spacing-12)" style={{ maxWidth: '720px', margin: '0 auto' }}>
+              
+              <Stack gap="var(--spacing-4)" style={{ borderBottom: '1px solid var(--color-border)', paddingBottom: 'var(--spacing-8)' }}>
+                <h1 className="t-page-heading">{legalContent.terms.title}</h1>
+                <p className="t-small" style={{ color: 'var(--color-text-muted)' }}>
+                  Last Updated: {legalContent.lastUpdated}
+                </p>
+                <div style={{ backgroundColor: 'var(--color-surface-sunken)', padding: 'var(--spacing-4)', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--color-brand-teal)' }}>
+                  <p className="t-small" style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>
+                    {legalContent.terms.disclaimer}
+                  </p>
+                </div>
+              </Stack>
 
-            <Stack gap="var(--spacing-4)" className="t-body">
-              <p>
-                <strong>Informational Status</strong>: This website is for informational purposes only. The MokXya Hisab product is currently under development.
-              </p>
-
-              <p>
-                <strong>No Guarantees</strong>: Applying for the Founding Pilot does not guarantee acceptance. Participation may be limited.
-              </p>
-
-              <p>
-                <strong>No Professional Advice</strong>: We do not provide accounting, tax, or legal advice. The interactive demonstrations on this website use predefined examples and should not be relied upon as production accounting tools.
-              </p>
-
-              <p>
-                <strong>Acceptable Use & IP</strong>: All content, designs, and branding on this website are the intellectual property of MokXya. You may not reproduce them without permission.
-              </p>
-
-              <p>
-                <strong>External Links</strong>: We are not responsible for the content of external websites linked from this site.
-              </p>
+              <Stack gap="var(--spacing-12)" className="t-body">
+                {legalContent.terms.sections.map((section) => (
+                  <Stack key={section.id} id={section.id} gap="var(--spacing-4)">
+                    <h2 className="t-section-heading" style={{ color: 'var(--color-text-main)', fontSize: '1.25rem' }}>
+                      {section.title}
+                    </h2>
+                    <Stack gap="var(--spacing-4)">
+                      {section.content.map((paragraph, idx) => (
+                        <p key={idx} style={{ color: 'var(--color-text-muted)', lineHeight: 1.6 }}>
+                          {paragraph}
+                        </p>
+                      ))}
+                    </Stack>
+                  </Stack>
+                ))}
+              </Stack>
             </Stack>
-          </Stack>
-        </Container>
-      </Section>
+          </Container>
+        </Section>
+      </main>
     </>
   );
 };
